@@ -1,9 +1,10 @@
 <?php
 
-class Vehicle{
-    public $model;
-    public $engineCount;
-    public $type;
+class Vehicle
+{
+    public string $model;
+    public string $engineCount;
+    public string $type;
     const CAR = "Car";
     const BUS = "Bus";
     const TRUCK = "Truck";
@@ -11,67 +12,81 @@ class Vehicle{
     public function __construct(){}
 }
 
-interface VehicleBuilderInterface{
-    public function setModel();
-    public function setEngineCount();
-    public function setType();
-    public function getVehicle();
+interface VehicleBuilderInterface
+{
+    public function set_model();
+    public function set_engine_count();
+    public function set_type();
+    public function get_vehicle();
 }
 
-class BmwCarBuilder implements VehicleBuilderInterface{
+class BmwCarBuilder implements VehicleBuilderInterface
+{
     private $vehicle;
 
-    public function __construct(Vehicle $vehicle){
+    public function __construct(Vehicle $vehicle)
+	{
         $this->vehicle = $vehicle;
     }
 
-    public function setModel(){
+    public function set_model()
+	{
         $this->vehicle->model = "BMW";
     }
 
-    public function setEngineCount(){
+    public function set_engine_count()
+	{
         $this->vehicle->engineCount = 1;
     }
 
-    public function setType(){
+    public function set_type()
+	{
         $this->vehicle->type = Vehicle::CAR;
     }
 
-    public function  getVehicle(){
+    public function get_vehicle(): Vehicle
+	{
         return $this->vehicle;
     }
 }
 
-class BmwBusBuilder implements VehicleBuilderInterface{
+class BmwBusBuilder implements VehicleBuilderInterface
+{
     private $vehicle;
 
-    public function __construct(Vehicle $vehicle){
+    public function __construct(Vehicle $vehicle)
+	{
         $this->vehicle = $vehicle;
     }
 
-    public function setModel(){
+    public function set_model()
+	{
         $this->vehicle->model = "BMW";
     }
 
-    public function setEngineCount(){
+    public function set_engine_count()
+	{
         $this->vehicle->engineCount = 1;
     }
 
-    public function setType(){
+    public function set_type()
+	{
         $this->vehicle->type = Vehicle::BUS;
     }
 
-    public function  getVehicle(){
+    public function get_vehicle(): Vehicle
+	{
         return $this->vehicle;
     }
 }
 
 class vehicleDirector{
-    public function  build(VehicleBuilderInterface $vehicleBuilderInterface){
-        $vehicleBuilderInterface->setModel();
-        $vehicleBuilderInterface->setEngineCount();
-        $vehicleBuilderInterface->setType();
-        return $vehicleBuilderInterface->getVehicle();
+    public function  build(VehicleBuilderInterface $vehicleBuilderInterface): Vehicle
+	{
+        $vehicleBuilderInterface->set_model();
+        $vehicleBuilderInterface->set_engine_count();
+        $vehicleBuilderInterface->set_type();
+        return $vehicleBuilderInterface->get_vehicle();
     }
 }
 
